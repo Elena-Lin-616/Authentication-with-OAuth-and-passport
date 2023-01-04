@@ -41,7 +41,10 @@
 
    ```jsx
    const { protect, restrictTo } = require("../controllers/authController");
-   router.route("/").get(protect, getAllProduct);
+   router
+     .route("/")
+     .get(protect, getAllProduct)
+     .post(protect, restrictTo("admin"), createNewProduct);
    ```
 
 ### Logout
