@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const app = express();
 require("./services/passport/local");
+require("./services/passport/jwt");
 const authRouter = require("./routes/authRouter");
 
 const {
