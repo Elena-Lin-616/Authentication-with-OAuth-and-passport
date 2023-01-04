@@ -5,11 +5,11 @@ const {
 } = require("../controllers/productController");
 const { protect, restrictTo } = require("../controllers/authController");
 const router = express.Router();
-const { protectByPassport } = require("../services/passport/jwt");
+// const { protectByPassport } = require("../services/passport/jwt");
 
 router
   .route("/")
-  .get(protectByPassport, getAllProduct)
+  .get(protect, getAllProduct)
   .post(protect, restrictTo("admin"), createNewProduct);
 
 module.exports = router;

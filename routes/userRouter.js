@@ -3,6 +3,7 @@ const {
   signup,
   login,
   protect,
+  logout,
   restrictTo,
   forgetPassword,
   resetPassword,
@@ -22,7 +23,8 @@ const router = express.Router();
 router.get("/test", testForFilter);
 
 router.post("/signup", signup);
-router.post("/login", login);
+router.post("/login/password", login);
+router.post("/logout", protect, logout);
 
 router.post("/forgotPassword", forgetPassword);
 router.post("/resetPassword/:token", resetPassword);

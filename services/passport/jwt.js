@@ -27,13 +27,3 @@ passport.use(
     }
   )
 );
-
-exports.protectByPassport = passport.authenticate("jwt", { session: false });
-
-exports.restoreUser = (req, res, next) => {
-  return passport.authenticate("jwt", { session: false }, (err, user) => {
-    if (err) return next(err);
-    if (user) req.user = user;
-    next();
-  })(req, res, next);
-};

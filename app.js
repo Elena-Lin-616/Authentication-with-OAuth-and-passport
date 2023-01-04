@@ -3,7 +3,6 @@ const morgan = require("morgan");
 const app = express();
 require("./services/passport/local");
 require("./services/passport/jwt");
-const authRouter = require("./routes/authRouter");
 
 const {
   notFound,
@@ -19,7 +18,6 @@ app.get("/test", (req, res) => {
 });
 
 // @desc: router for users and prducts
-app.use("/api/auth", authRouter);
 app.use("/api/users", require("./routes/userRouter"));
 app.use("/api/products", require("./routes/productRouter"));
 
