@@ -37,16 +37,3 @@ exports.restoreUser = (req, res, next) => {
     next();
   })(req, res, next);
 };
-
-exports.loginUser = async (user) => {
-  const userInfo = {
-    id: user.id,
-    username: user.name,
-    email: user.email,
-  };
-  const token = await jwt.sign(userInfo, secretOrKey, { expiresIn: 3600 });
-  return {
-    user: userInfo,
-    token,
-  };
-};
