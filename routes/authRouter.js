@@ -31,4 +31,12 @@ router.post("/login/password", (req, res, next) => {
   })(req, res);
 });
 
+// Logout
+router.post("/logout", (req, res, next) => {
+  res.status(200).json({
+    token: "logout",
+    message: "You have logout",
+  });
+});
+
 module.exports = router;
