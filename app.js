@@ -1,6 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
+require("./services/passport/local");
+const authRouter = require("./routes/authRouter");
+
 const {
   notFound,
   glbalErrorHandler,
@@ -15,6 +18,7 @@ app.get("/test", (req, res) => {
 });
 
 // @desc: router for users and prducts
+app.use("/api/auth", authRouter);
 app.use("/api/users", require("./routes/userRouter"));
 app.use("/api/products", require("./routes/productRouter"));
 
