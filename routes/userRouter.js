@@ -30,8 +30,8 @@ router.post("/signup", signup);
 // error : 401 Unauthorized
 
 // login middlware to create & response token to user
-const requireSignin = passport.use("local", { session: false });
-router.post("/login/password", requireSignin, login);
+// const requireSignin = passport.use("local", { session: false });
+// router.post("/login/password", requireSignin, login);
 
 router.post("/login/password", login);
 router.post("/logout", protect, logout);
@@ -50,15 +50,18 @@ router.delete("/deleteMe", protect, deleteMe);
 // auto set req.user as currect user
 
 // router.route("/").get(protect, restrictTo("admin"), getAllUsers);
-// router
-//   .route("/")
-//   .get(passport.authenticate("jwt", { session: false }), getAllUsers);
+router
+  .route("/")
+  .get(passport.authenticate("jwt", { session: false }), getAllUsers);
 
 router.get(
-  "/",
+  "/isAuth",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    res.send(req.user);
+    res.json({
+      user: req.user,
+      isAuth: req.isAuthenticated(),
+    });
   }
 );
 
