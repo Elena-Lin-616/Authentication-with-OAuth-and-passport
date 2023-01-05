@@ -24,6 +24,15 @@ const router = express.Router();
 router.get("/test", testForFilter);
 
 router.post("/signup", signup);
+
+// use passport-local to use email & password to login
+// after requireSign in, set req.user
+// error : 401 Unauthorized
+
+// login middlware to create & response token to user
+const requireSignin = passport.use("local", { session: false });
+router.post("/login/password", requireSignin, login);
+
 router.post("/login/password", login);
 router.post("/logout", protect, logout);
 
