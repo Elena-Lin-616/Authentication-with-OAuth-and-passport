@@ -89,7 +89,7 @@ const protect = (req, res, next) => {
 
     // if user has logout, user = false
     if (!user) {
-      throw new AppError("You are not logged in yet, please login first.");
+      throw new AppError("You are not logged in yet, please login first.", 401);
     }
     // grant access
     req.user = user;
