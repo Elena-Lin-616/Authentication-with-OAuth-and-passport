@@ -30,10 +30,14 @@ router.post("/signup", signup);
 // error : 401 Unauthorized
 
 // login middlware to create & response token to user
-// const requireSignin = passport.use("local", { session: false });
-// router.post("/login/password", requireSignin, login);
+const requireSignin = passport.authenticate("local", { session: false });
 
-router.post("/login/password", login);
+// use cookie to send maintain status
+// const requireSignin = passport.authenticate("local");
+
+router.post("/login/password", requireSignin, login);
+
+// router.post("/login/password", login);
 router.post("/logout", protect, logout);
 
 router.post("/forgotPassword", forgetPassword);

@@ -2,6 +2,15 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("../../db/models/userModel");
 
+// passport.serializeUser((user, done) => {
+//   done(null, user.id);
+// });
+
+// passport.deserializeUser(async (id, done) => {
+//   const user = await User.findByPk(id);
+//   done(null, user);
+// });
+
 passport.use(
   new LocalStrategy(
     {
