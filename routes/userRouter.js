@@ -1,4 +1,5 @@
 const express = require("express");
+const passport = require("passport");
 const {
   signup,
   login,
@@ -33,6 +34,23 @@ router.put("/updateMypassword", protect, updatePassword);
 router.put("/updateMe", protect, updateMe);
 router.delete("/deleteMe", protect, deleteMe);
 
-router.route("/").get(protect, restrictTo("admin"), getAllUsers);
+// 2 way to implement protect middleware
+// protect : error message: 401 You are not logged in yet, please login first
+// passport.authenticate('jwt', {session:false}) ->
+// 401 Unauthorized
+// auto set req.user as currect user
+
+// router.route("/").get(protect, restrictTo("admin"), getAllUsers);
+// router
+//   .route("/")
+//   .get(passport.authenticate("jwt", { session: false }), getAllUsers);
+
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.send(req.user);
+  }
+);
 
 module.exports = router;
