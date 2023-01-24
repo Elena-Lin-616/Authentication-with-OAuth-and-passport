@@ -1,4 +1,4 @@
-test for rename
+test for I update the local remote url
 
 ## Usage
 
